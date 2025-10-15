@@ -1,3 +1,5 @@
+// backend/src/main/java/br/com/alertabank/alertabank/model/Relato.java
+
 package br.com.alertabank.alertabank.model;
 
 import jakarta.persistence.*;
@@ -21,7 +23,7 @@ public class Relato {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "char(36)")
     private UUID id;
 
     @ManyToOne

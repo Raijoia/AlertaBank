@@ -1,3 +1,5 @@
+// backend/src/main/java/br/com/alertabank/alertabank/model/Banco.java
+
 package br.com.alertabank.alertabank.model;
 
 import jakarta.persistence.*;
@@ -19,7 +21,7 @@ public class Banco {
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator"
     )
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = "id", updatable = false, nullable = false, columnDefinition = "char(36)")
     private UUID id;
 
     @Column(nullable = false, unique = true)

@@ -10,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map; // Importe a classe Map
 import java.util.Optional;
+import java.util.UUID; // Importe a classe UUID
 
 @RestController
 @RequestMapping("/relatos")
@@ -24,10 +26,17 @@ public class RelatoController {
     private BancoRepository bancoRepository;
 
     @PostMapping
-    public ResponseEntity<Relato> cadastrarRelato(@RequestBody RelatoDTO relatoDTO) {
+    public ResponseEntity<?> cadastrarRelato(@RequestBody RelatoDTO relatoDTO) {
+        
+        if (relatoDTO.getBancoId() == null) {
+            return ResponseEntity.badRequest().body(Map.of("erro", "O campo 'bancoId' não pode ser nulo."));
+        }
+
         Optional<Banco> bancoOptional = bancoRepository.findById(relatoDTO.getBancoId());
+
         if (bancoOptional.isEmpty()) {
-            return ResponseEntity.badRequest().build();
+            String mensagemErro = "Banco com ID '" + relatoDTO.getBancoId() + "' não encontrado.";
+            return ResponseEntity.status(404).body(Map.of("erro", mensagemErro));
         }
 
         Relato novoRelato = new Relato();

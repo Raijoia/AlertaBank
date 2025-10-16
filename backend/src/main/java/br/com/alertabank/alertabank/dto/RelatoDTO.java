@@ -8,6 +8,6 @@ import java.util.UUID;
 @Getter
 @Setter
 public class RelatoDTO {
-    private UUID bancoId;
+    private String bancoId;
     private String descricao;
 }

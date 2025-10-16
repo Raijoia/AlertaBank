@@ -22,7 +22,7 @@ public class Banco {
             strategy = "org.hibernate.id.UUIDGenerator"
     )
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "char(36)")
-    private UUID id;
+    private String id;
 
     @Column(nullable = false, unique = true)
     private String nome;

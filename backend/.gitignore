@@ -32,3 +32,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+*/servico-bancos/src/main/resources/application.properties
+*/servico-relatos/src/main/resources/application.properties

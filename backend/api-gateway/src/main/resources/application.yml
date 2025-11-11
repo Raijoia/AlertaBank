@@ -1,36 +1,31 @@
+# Este arquivo é lido DEPOIS do bootstrap.yml
+
+# A porta do Gateway
 server:
   port: 8080
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-
+# As rotas e o CORS
 spring:
-  application:
-    name: apigateway
-
   cloud:
     gateway:
-      globalcors:
-        cors-configurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods:
-              - GET
-              - POST
-              - PUT
-              - DELETE
-              - OPTIONS
-            allowedHeaders: "*"
+      server:
+        webflux: # Bloco para a nova versão
 
-      routes:
-        - id: servico-bancos
-          uri: lb://SERVICO-BANCOS
-          predicates:
-            - Path=/bancos/**
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins: "*"
+                allowedMethods: "*"
+                allowedHeaders: "*"
 
-        - id: servico-relatos
-          uri: lb://SERVICO-RELATOS
-          predicates:
-            - Path=/relatos/**
+          routes:
+            - id: servico-bancos
+              uri: lb://SERVICO-BANCOS
+              predicates:
+                - Path=/bancos/**
+
+            - id: servico-relatos
+              # Lembre-se de corrigir o nome no servico-relatos (Terminal 3)
+              uri: lb://SERVICO-RELATOS
+              predicates:
+                - Path=/relatos/**

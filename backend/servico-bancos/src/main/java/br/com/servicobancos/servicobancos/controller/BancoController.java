@@ -1,8 +1,7 @@
-// Copiado de
-package br.com.alertabank.bancos.controller;
+package br.com.servicobancos.servicobancos.controller;
 
-import br.com.alertabank.bancos.model.Banco;
-import br.com.alertabank.bancos.repository.BancoRepository;
+import br.com.servicobancos.servicobancos.model.Banco;
+import br.com.servicobancos.servicobancos.repository.BancoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

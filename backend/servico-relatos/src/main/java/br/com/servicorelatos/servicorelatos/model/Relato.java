@@ -17,7 +17,12 @@ public class Relato {
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(...)
+
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
+
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "char(36)")
     private UUID id;
 

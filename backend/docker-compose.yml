@@ -1,0 +1,34 @@
+services:
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+
+  servico-bancos:
+    build: ./servico-bancos
+    container_name: servico-bancos
+    ports:
+      - "8081:8081"
+    depends_on:
+      eureka-server:
+        condition: service_started
+
+  servico-relatos:
+    build: ./servico-relatos
+    container_name: servico-relatos
+    ports:
+      - "8082:8082"
+    depends_on:
+      eureka-server:
+        condition: service_started
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+      - servico-bancos
+      - servico-relatos

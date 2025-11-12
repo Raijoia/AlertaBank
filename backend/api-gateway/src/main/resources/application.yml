@@ -1,15 +1,11 @@
-# Este arquivo é lido DEPOIS do bootstrap.yml
-
-# A porta do Gateway
 server:
   port: 8080
 
-# As rotas e o CORS
 spring:
   cloud:
     gateway:
       server:
-        webflux: # Bloco para a nova versão
+        webflux:
 
           globalcors:
             cors-configurations:
@@ -25,7 +21,6 @@ spring:
                 - Path=/bancos/**
 
             - id: servico-relatos
-              # Lembre-se de corrigir o nome no servico-relatos (Terminal 3)
               uri: lb://SERVICO-RELATOS
               predicates:
                 - Path=/relatos/**

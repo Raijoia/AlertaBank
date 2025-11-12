@@ -1,4 +1,4 @@
-package br.com.alertabank.bancos;
+package br.com.servicobancos.servicobancos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Table(name = "tb_relatos")
@@ -24,7 +23,7 @@ public class Relato {
     )
 
     @Column(name = "id", updatable = false, nullable = false, columnDefinition = "char(36)")
-    private UUID id;
+    private String id;
 
     @Column(name = "banco_id", nullable = false, columnDefinition = "char(36)")
     private String bancoId;

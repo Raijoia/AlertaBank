@@ -10,28 +10,27 @@ export default function CadastrarRelato() {
   const [bancoId, setBancoId] = useState('');
   const [descricao, setDescricao] = useState('');
   const [captchaToken, setCaptchaToken] = useState(null);
-  
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-  
+
   const navigate = useNavigate();
 
-  // Busca os bancos para o <select>
   useEffect(() => {
     getBancos()
-      .then(res => setBancos(res.data))
-      .catch(err => setError('Não foi possível carregar a lista de bancos.'));
+      .then((res) => setBancos(res.data))
+      .catch((err) => setError('Não foi possível carregar a lista de bancos.'));
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!bancoId || !descricao) {
       setError('Por favor, preencha todos os campos.');
       return;
     }
-    
+
     if (!captchaToken) {
       setError('Por favor, confirme que você não é um robô.');
       return;
@@ -44,13 +43,12 @@ export default function CadastrarRelato() {
     try {
       const relatoData = { bancoId, descricao };
       await postRelato(relatoData);
-      
+
       setSuccess('Relato cadastrado com sucesso! Redirecionando...');
-      
+
       setTimeout(() => {
         navigate('/');
       }, 2000);
-
     } catch (err) {
       setError('Erro ao enviar o relato. Tente novamente.');
       setIsSubmitting(false);
@@ -65,7 +63,10 @@ export default function CadastrarRelato() {
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label htmlFor="banco" className="block text-sm font-medium font-montserrat text-cinza-escuro mb-1">
+          <label
+            htmlFor="banco"
+            className="block text-sm font-medium font-montserrat text-cinza-escuro mb-1"
+          >
             Qual banco está relacionado à tentativa de golpe?
           </label>
           <select
@@ -75,15 +76,24 @@ export default function CadastrarRelato() {
             className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-azul-claro focus:border-azul-claro"
             disabled={bancos.length === 0}
           >
-            <option value="">{bancos.length > 0 ? 'Selecione um banco...' : 'Carregando bancos...'}</option>
-            {bancos.map(banco => (
-              <option key={banco.id} value={banco.id}>{banco.nome}</option>
+            <option value="">
+              {bancos.length > 0
+                ? 'Selecione um banco...'
+                : 'Carregando bancos...'}
+            </option>
+            {bancos.map((banco) => (
+              <option key={banco.id} value={banco.id}>
+                {banco.nome}
+              </option>
             ))}
           </select>
         </div>
 
         <div>
-          <label htmlFor="descricao" className="block text-sm font-medium font-montserrat text-cinza-escuro mb-1">
+          <label
+            htmlFor="descricao"
+            className="block text-sm font-medium font-montserrat text-cinza-escuro mb-1"
+          >
             Descreva o que aconteceu (seja breve):
           </label>
           <textarea
@@ -118,14 +128,14 @@ export default function CadastrarRelato() {
         <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
           <Link
             to="/"
-            className="w-full md:w-auto text-center py-3 px-6 text-azul-confianca font-bold rounded-md hover:bg-gray-100 transition-all"
+            className="w-full md:w-auto text-center py-3 px-6 text-azul-confianca font-bold rounded-md hover:bg-gray-100 transform transition-all duration-300 hover:scale-105 active:scale-95"
           >
             Voltar para Home
           </Link>
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full md:w-auto bg-azul-confianca hover:bg-azul-claro text-branco-limpo font-montserrat font-bold py-3 px-8 rounded-md transition-all duration-300 shadow-lg disabled:bg-gray-400"
+            className="bg-azul-confianca hover:bg-azul-claro text-branco-limpo font-montserrat font-bold py-3 px-8 rounded-full text-lg shadow-lg transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
           >
             {isSubmitting ? 'Enviando...' : 'Enviar Relato'}
           </button>

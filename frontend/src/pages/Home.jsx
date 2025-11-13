@@ -14,14 +14,15 @@ export default function Home() {
     async function fetchData() {
       try {
         setLoading(true);
-        const [bancosRes, relatosRes] = await Promise.all([getBancos(), getRelatos()]);
-        
+        const [bancosRes, relatosRes] = await Promise.all([
+          getBancos(),
+          getRelatos(),
+        ]);
+
         setBancos(bancosRes.data);
         setRelatos(relatosRes.data);
-        
-        // Processar dados para o gráfico
+
         processChartData(bancosRes.data, relatosRes.data);
-        
       } catch (err) {
         setError('Falha ao carregar os dados. Tente novamente mais tarde.');
       } finally {
@@ -33,28 +34,28 @@ export default function Home() {
 
   function processChartData(bancosList, relatosList) {
     const contagemRelatos = {};
-    
-    bancosList.forEach(banco => {
+
+    bancosList.forEach((banco) => {
       contagemRelatos[banco.id] = { nome: banco.nome, contagem: 0 };
     });
 
-    // Conta os relatos
-    relatosList.forEach(relato => {
+    relatosList.forEach((relato) => {
       if (contagemRelatos[relato.bancoId]) {
         contagemRelatos[relato.bancoId].contagem++;
       }
     });
-    
-    const sortedData = Object.values(contagemRelatos)
-                             .sort((a, b) => b.contagem - a.contagem);
+
+    const sortedData = Object.values(contagemRelatos).sort(
+      (a, b) => b.contagem - a.contagem
+    );
 
     setChartData({
-      labels: sortedData.map(d => d.nome),
+      labels: sortedData.map((d) => d.nome),
       datasets: [
         {
           label: 'Número de Relatos de Fraude',
-          data: sortedData.map(d => d.contagem),
-          backgroundColor: '#0B4C8C', 
+          data: sortedData.map((d) => d.contagem),
+          backgroundColor: '#0B4C8C',
           borderColor: '#2E86DE',
           borderWidth: 1,
         },
@@ -63,11 +64,17 @@ export default function Home() {
   }
 
   if (loading) {
-    return <div className="text-center font-montserrat">Carregando dados...</div>;
+    return (
+      <div className="text-center font-montserrat">Carregando dados...</div>
+    );
   }
 
   if (error) {
-    return <div className="bg-amarelo-alerta/20 text-cinza-escuro p-4 rounded text-center">{error}</div>;
+    return (
+      <div className="bg-amarelo-alerta/20 text-cinza-escuro p-4 rounded text-center">
+        {error}
+      </div>
+    );
   }
 
   return (
@@ -77,18 +84,22 @@ export default function Home() {
           Ranking de Bancos por Relatos de Fraude
         </h1>
         <p className="font-open-sans mb-6">
-          Veja em tempo real quais bancos possuem mais relatos de tentativas de golpe
-          reportados pela comunidade.
+          Veja em tempo real quais bancos possuem mais relatos de tentativas de
+          golpe reportados pela comunidade.
         </p>
         <div className="w-full h-auto md:h-[400px] relative">
-          {chartData ? <RelatosChart data={chartData} /> : <p>Processando gráfico...</p>}
+          {chartData ? (
+            <RelatosChart data={chartData} />
+          ) : (
+            <p>Processando gráfico...</p>
+          )}
         </div>
       </section>
 
       <section className="text-center">
         <Link
           to="/cadastrar"
-          className="bg-azul-confianca hover:bg-azul-claro text-branco-limpo font-montserrat font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 shadow-lg"
+          className="bg-azul-confianca hover:bg-azul-claro text-branco-limpo font-montserrat font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition-all duration-300 hover:scale-105 active:scale-95"
         >
           Reportar uma Fraude Agora
         </Link>

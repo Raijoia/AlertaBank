@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins: "*"
+                allowedMethods: "*"
+                allowedHeaders: "*"
+
+          routes:
+            - id: servico-bancos
+              uri: lb://SERVICO-BANCOS
+              predicates:
+                - Path=/bancos/**
+
+            - id: servico-relatos
+              uri: lb://SERVICO-RELATOS
+              predicates:
+                - Path=/relatos/**

@@ -1,0 +1,4 @@
+br/com/servicobancos/servicobancos/controller/BancoController.class
+br/com/servicobancos/servicobancos/BancoApplication.class
+br/com/servicobancos/servicobancos/model/Banco.class
+br/com/servicobancos/servicobancos/repository/BancoRepository.class

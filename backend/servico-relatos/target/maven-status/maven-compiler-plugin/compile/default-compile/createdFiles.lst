@@ -1,0 +1,6 @@
+br/com/servicorelatos/servicorelatos/ServicorelatosApplication.class
+br/com/servicorelatos/servicorelatos/model/Relato.class
+br/com/servicorelatos/servicorelatos/dto/RelatoDTO.class
+br/com/servicorelatos/servicorelatos/config/AppConfig.class
+br/com/servicorelatos/servicorelatos/repository/RelatoRepository.class
+br/com/servicorelatos/servicorelatos/controller/RelatoController.class

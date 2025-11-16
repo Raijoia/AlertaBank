@@ -1,0 +1,4 @@
+/home/rai/Documentos/alertaBank/backend/servico-bancos/src/main/java/br/com/servicobancos/servicobancos/BancoApplication.java
+/home/rai/Documentos/alertaBank/backend/servico-bancos/src/main/java/br/com/servicobancos/servicobancos/controller/BancoController.java
+/home/rai/Documentos/alertaBank/backend/servico-bancos/src/main/java/br/com/servicobancos/servicobancos/model/Banco.java
+/home/rai/Documentos/alertaBank/backend/servico-bancos/src/main/java/br/com/servicobancos/servicobancos/repository/BancoRepository.java

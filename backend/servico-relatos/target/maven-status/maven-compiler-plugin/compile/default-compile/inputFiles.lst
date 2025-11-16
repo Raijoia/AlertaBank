@@ -1,0 +1,6 @@
+/home/rai/Documentos/alertaBank/backend/servico-relatos/src/main/java/br/com/servicorelatos/servicorelatos/ServicorelatosApplication.java
+/home/rai/Documentos/alertaBank/backend/servico-relatos/src/main/java/br/com/servicorelatos/servicorelatos/config/AppConfig.java
+/home/rai/Documentos/alertaBank/backend/servico-relatos/src/main/java/br/com/servicorelatos/servicorelatos/controller/RelatoController.java
+/home/rai/Documentos/alertaBank/backend/servico-relatos/src/main/java/br/com/servicorelatos/servicorelatos/dto/RelatoDTO.java
+/home/rai/Documentos/alertaBank/backend/servico-relatos/src/main/java/br/com/servicorelatos/servicorelatos/model/Relato.java
+/home/rai/Documentos/alertaBank/backend/servico-relatos/src/main/java/br/com/servicorelatos/servicorelatos/repository/RelatoRepository.java
